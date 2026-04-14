@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Instalando dependencias"
+
+  pre_build:
+    commands:
+      - ls -la pagina/
+      - test -f pagina/pagina.html || exit 1
+      - test -f pagina/style.css  || exit 1
+
+  build:
+    commands:
+      - mkdir -p dist
+      - cp -r pagina/* dist/
+      - ls -la dist/
+
+  post_build:
+    commands:
+      - aws s3 sync dist/ s3://$BUCKET_NAME/ --delete
+      - echo "URL http://$BUCKET_NAME.s3-website-us-east-1.amazonaws.com/pagina.html"
+
+artifacts:
+  files:
+    - "dist/**/*"
+  discard-paths: no

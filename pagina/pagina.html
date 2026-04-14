@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Viktor Raúl Hernández Vargas - Tecmilenio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="background-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <main class="card">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Universidad Tecmilenio" class="logo-img"/>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="info">
+      <p class="label">Nombre</p>
+      <h1 class="nombre">Viktor Raúl Hernández Vargas</h1>
+
+      <p class="label">Correo institucional</p>
+      <a class="correo" href="mailto:al03003728@tecmilenio.mx">
+        <span class="correo-icon">✉</span>
+        al03003728@tecmilenio.mx
+      </a>
+    </div>
+
+    <button class="btn-matricula" onclick="mostrarMatricula()">
+      Ver Matrícula
+    </button>
+  </main>
+
+  <div class="modal-overlay" id="modal" onclick="cerrarModal(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+      <h2 class="modal-title">Datos del Estudiante</h2>
+      <div class="modal-foto-wrap">
+        <img src="brucesprinsteen.png" alt="Viktor Raúl Hernández Vargas">
+      </div>
+      <p class="modal-label">Matrícula</p>
+      <p class="modal-matricula">Al03003728</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarMatricula() {
+      document.getElementById('modal').classList.add('visible');
+    }
+    function cerrarModal(e) {
+      if (!e || e.target === document.getElementById('modal') || e.currentTarget.classList.contains('modal-close')) {
+        document.getElementById('modal').classList.remove('visible');
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') cerrarModal();
+    });
+  </script>
+</body>
+</html>
